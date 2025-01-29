@@ -34,7 +34,7 @@ const createProduct = async (req, res, next) => {
     });
 
     // send success response
-    res.status(201).json({ message: "Product created successfully" });
+    res.status(201).json({ message: "Product created successfully", newProduct });
   } catch (error) {
     next(error);
   }
