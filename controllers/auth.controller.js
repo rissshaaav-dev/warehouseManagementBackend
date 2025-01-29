@@ -51,7 +51,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
@@ -71,7 +71,7 @@ const loginUser = async (req, res) => {
     }
 
     // match passwords
-    const isMatch = await bcrypt.compare(password, retrievedUser.password);
+    const isMatch = bcrypt.compare(password, retrievedUser.password);
     if (!isMatch) {
       const error = new Error("Invalid credentials");
       error.statusCode = 400;
@@ -80,7 +80,7 @@ const loginUser = async (req, res) => {
 
     // generate jwt token
     const token = jwt.sign(
-      { id: newUser._id, role: retrievedUser.role },
+      { id: retrievedUser._id, role: retrievedUser.role },
       process.env.JWT_SECRET,
       {
         expiresIn: "10d",
