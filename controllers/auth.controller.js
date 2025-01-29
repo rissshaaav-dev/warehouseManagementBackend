@@ -66,7 +66,7 @@ const loginUser = async (req, res) => {
     const retrievedUser = await User.findOne({ email });
     if (!retrievedUser) {
       const error = new Error("User not found");
-      error.statusCode = 400;
+      error.statusCode = 404;
       throw error;
     }
 
