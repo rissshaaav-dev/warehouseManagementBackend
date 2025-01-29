@@ -1,0 +1,32 @@
+{
+  "name": "warehousemanagementbackend",
+  "version": "1.0.0",
+  "description": "this is a backend project for a warehouse inventory management system and possibly never gonna get a frontend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rissshaaav-dev/warehouseManagementBackend.git"
+  },
+  "keywords": [
+    "warehouse",
+    "warehouse-management",
+    "warehouse-management-backend",
+    "inventory",
+    "inventory-management",
+    "inventory-management-backend",
+    "backend",
+    "nodejs",
+    "expressjs",
+    "javascript",
+    "mongodb"
+  ],
+  "author": "https://github.com/rissshaaav-dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rissshaaav-dev/warehouseManagementBackend/issues"
+  },
+  "homepage": "https://github.com/rissshaaav-dev/warehouseManagementBackend#readme"
+}
