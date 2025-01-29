@@ -28,5 +28,9 @@
   "bugs": {
     "url": "https://github.com/rissshaaav-dev/warehouseManagementBackend/issues"
   },
-  "homepage": "https://github.com/rissshaaav-dev/warehouseManagementBackend#readme"
+  "homepage": "https://github.com/rissshaaav-dev/warehouseManagementBackend#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  }
 }
