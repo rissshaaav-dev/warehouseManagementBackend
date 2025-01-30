@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/products", productRouter);
-app.use("/api/warehouse", warehouseRouter);
+app.use("/api/warehouses", warehouseRouter);
 
 // Error handling middleware (must be at the end)
 app.use(errorHandler);

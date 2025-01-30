@@ -8,17 +8,15 @@ const createWarehouse = async (req, res, next) => {
   try {
     // check if all necessary fields are supplied
     if (!name || !location) {
-      const error = new Error("Necessary fields missing: name, location");
-      error.statusCode = 400;
-      throw error;
+      res.status(400);
+      throw new Error('Missing necessary fields: name, location');
     }
 
     // check if warehouse already exists
     const existingWarehouse = await Warehouse.findOne({ name, location });
     if (existingWarehouse) {
-      const error = new Error("Warehouse already exists");
-      error.statusCode = 400;
-      throw error;
+      res.status(400);
+      throw new Error('Warehouse already exists');
     }
 
     // create new warehouse
@@ -52,9 +50,8 @@ const getWarehouseById = async (req, res, next) => {
   try {
     const warehouse = await Warehouse.findById(req.params.id);
     if (!warehouse) {
-      const error = new Error("Warehouse not found");
-      error.statusCode = 404;
-      throw error;
+      res.status(404);
+      throw new Error('Warehouse not found');
     }
     res.status(200).json(warehouse);
   } catch (error) {
@@ -70,7 +67,7 @@ const updateWarehouse = async (req, res, next) => {
     const warehouse = await Warehouse.findById(req.params.id);
     if (!warehouse) {
       res.status(404);
-      throw new Error("Warehouse not found");
+      throw new Error('Warehouse not found');
     }
 
     const { name, location } = req.body;
@@ -90,13 +87,13 @@ const updateWarehouse = async (req, res, next) => {
 // @access  Private (Admin)
 const deleteWarehouse = async (req, res, next) => {
   try {
-    const warehouse = await Warehouse.findById(req.params.id);
-    if (!warehouse) {
+    const retrievedWarehouse = await Warehouse.findById(req.params.id);
+    if (!retrievedWarehouse) {
       res.status(404);
-      throw new Error("Warehouse not found");
+      throw new Error('Warehouse not found');
     }
 
-    await warehouse.remove();
+    await retrievedWarehouse.deleteOne();
     res.status(200).json({ message: "Warehouse deleted successfully" });
   } catch (error) {
     next(error);
