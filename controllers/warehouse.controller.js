@@ -22,7 +22,7 @@ const createWarehouse = async (req, res, next) => {
     }
 
     // create new warehouse
-    const newWarehouse = new Warehouse.create({ name, location });
+    const newWarehouse = await Warehouse.create({ name, location });
 
     // send success response
     res
