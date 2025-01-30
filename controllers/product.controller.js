@@ -9,19 +9,17 @@ const createProduct = async (req, res, next) => {
   try {
     // check if all necessary fields are supplied
     if (!name || !sku || !price || !stock || !warehouse) {
-      const error = new Error(
+      res.status(400);
+      throw new Error(
         "Necessary fields missing: name, sku, price, stock, warehouse"
       );
-      error.statusCode = 400;
-      throw error;
     }
 
     // check if product already exists
-    const existingProduct = await User.findOne({ sku });
+    const existingProduct = await Product.findOne({ sku });
     if (existingProduct) {
-      const error = new Error("Product already exists");
-      error.statusCode = 400;
-      throw error;
+      res.status(400);
+      throw new Error("Product already exists");
     }
 
     // create new product
@@ -34,7 +32,9 @@ const createProduct = async (req, res, next) => {
     });
 
     // send success response
-    res.status(201).json({ message: "Product created successfully", newProduct });
+    res
+      .status(201)
+      .json({ message: "Product created successfully", newProduct });
   } catch (error) {
     next(error);
   }
@@ -60,9 +60,8 @@ const getProductById = async (req, res, next) => {
     // search for the product by extracting id from the params
     const product = await Product.findById(req.param.id);
     if (!product) {
-      const error = new Error("Product not found");
-      error.statusCode = 404;
-      throw error;
+      res.status(404);
+      throw new Error("Product not found");
     }
 
     // send the response
