@@ -58,7 +58,7 @@ const getAllProducts = async (req, res, next) => {
 const getProductById = async (req, res, next) => {
   try {
     // search for the product by extracting id from the params
-    const product = await Product.findById(req.param.id);
+    const product = await Product.findById(req.params.id);
     if (!product) {
       res.status(404);
       throw new Error("Product not found");
