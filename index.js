@@ -3,6 +3,7 @@ const connectDB = require("./config/db.config");
 const errorHandler = require("./middlewares/errorHandler.middleware");
 const authRouter = require("./routes/auth.routes");
 const productRouter = require("./routes/product.routes");
+const warehouseRouter = require("./routes/warehouse.routes");
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRouter);
-app.use("/api/products", productRouter)
+app.use("/api/products", productRouter);
+app.use("/api/warehouse", warehouseRouter);
 
 // Error handling middleware (must be at the end)
 app.use(errorHandler);
