@@ -10,12 +10,12 @@ const {
 const protect = require("../middlewares/auth.middleware");
 const admin = require("../middlewares/admin.middleware");
 
-const router = express.Router();
+const warehouseRouter = express.Router();
 
-router.post("/", protect, admin, createWarehouse); // Create a warehouse (Admin)
-router.get("/", getAllWarehouses); // Get all warehouses (Public)
-router.get("/:id", getWarehouseById); // Get warehouse by ID (Public)
-router.put("/:id", protect, admin, updateWarehouse); // Update a warehouse (Admin)
-router.delete("/:id", protect, admin, deleteWarehouse); // Delete a warehouse (Admin)
+warehouseRouter.post("/", protect, admin, createWarehouse); // Create a warehouse (Admin)
+warehouseRouter.get("/", getAllWarehouses); // Get all warehouses (Public)
+warehouseRouter.get("/:id", getWarehouseById); // Get warehouse by ID (Public)
+warehouseRouter.put("/:id", protect, admin, updateWarehouse); // Update a warehouse (Admin)
+warehouseRouter.delete("/:id", protect, admin, deleteWarehouse); // Delete a warehouse (Admin)
 
-module.exports = router;
+module.exports = warehouseRouter;
