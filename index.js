@@ -1,4 +1,5 @@
 const express = require("express");
+const { swaggerUi, specs } = require("./config/swagger.config");
 const connectDB = require("./config/db.config");
 const errorHandler = require("./middlewares/errorHandler.middleware");
 const authRouter = require("./routes/auth.routes");
@@ -25,6 +26,7 @@ app.use("/api/products", productRouter);
 app.use("/api/warehouses", warehouseRouter);
 app.use("/api/stocks", stockRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Error handling middleware (must be at the end)
 app.use(errorHandler);
