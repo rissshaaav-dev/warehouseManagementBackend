@@ -120,3 +120,10 @@ const deleteStock = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports = {
+  addStock,
+  getStock,
+  updateStock,
+  deleteStock,
+};
