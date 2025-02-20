@@ -1,6 +1,7 @@
 const Product = require("../models/product.model");
-const Warehouse = require("../models/warehouse.model");
 const Stock = require("../models/stock.model");
+const Order = require("../models/order.model");
+
 
 // @desc    Place an order
 // @route   POST /api/orders
