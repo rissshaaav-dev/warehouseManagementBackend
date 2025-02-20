@@ -8,7 +8,7 @@ const createProduct = async (req, res, next) => {
 
   try {
     // check if all necessary fields are supplied
-    if (!name || !sku || !price || !stock || !warehouse) {
+    if (!name || !sku || !price) {
       res.status(400);
       throw new Error(
         "Necessary fields missing: name, sku, price, stock, warehouse"
@@ -27,8 +27,6 @@ const createProduct = async (req, res, next) => {
       name,
       sku,
       price,
-      stock,
-      warehouse,
     });
 
     // send success response
@@ -82,13 +80,19 @@ const updateProduct = async (req, res, next) => {
       throw new Error("Product not found");
     }
 
-    const { name, sku, price, stock, warehouse } = req.body;
+    const { name, sku, price } = req.body;
+
+    if (sku && sku !== product.sku) {
+      const existingProduct = await Product.findOne({ sku });
+      if (existingProduct) {
+        res.status(400);
+        throw new Error("SKU already exists");
+      }
+      product.sku = sku;
+    }
 
     product.name = name || product.name;
-    product.sku = sku || product.sku;
     product.price = price || product.price;
-    product.stock = stock || product.stock;
-    product.warehouse = warehouse || product.warehouse;
 
     const updatedProduct = await product.save();
     res.status(200).json(updatedProduct);
