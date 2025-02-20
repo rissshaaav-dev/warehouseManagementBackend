@@ -1,19 +1,30 @@
-const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
-const options = {
+const swaggerOptions = {
   definition: {
+    // 🔹 Use `definition` instead of `swaggerDefinition`
     openapi: "3.0.0",
     info: {
-      title: "Warehouse Management API",
+      title: "Inventory API",
       version: "1.0.0",
-      description: "API documentation for the Warehouse Management System",
+      description: "API for managing products, warehouses, and stocks",
     },
-    servers: [{ url: "http://localhost:3000" }], // Adjust based on your server
+    servers: [{ url: "http://localhost:3000" }], // Adjust to match your server
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [{ BearerAuth: [] }], // Apply globally
   },
-  apis: ["./routes/*.js"], // Points to your route files
+  apis: ["./routes/*.js"], // Adjust if needed
 };
 
-const specs = swaggerJsdoc(options);
+const specs = swaggerJsDoc(swaggerOptions);
 
 module.exports = { swaggerUi, specs };
