@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const WarehouseSchema = new mongoose.Schema(
+const warehouseSchema = new mongoose.Schema(
   {
     name: String,
     location: String,
@@ -8,4 +8,5 @@ const WarehouseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Warehouse", WarehouseSchema);
+module.exports =
+  mongoose.models.Warehouse || mongoose.model("Warehouse", warehouseSchema);

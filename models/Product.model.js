@@ -15,19 +15,19 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    stock: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    warehouse: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Warehouse", // Reference to Warehouse
-      required: true,
-    },
+    // stock: {
+    //   type: Number,
+    //   required: true,
+    //   default: 0,
+    // },
+    // warehouse: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Warehouse", // Reference to Warehouse
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );
 
-const Product = mongoose.model("Product", productSchema);
-module.exports = Product;
+module.exports =
+  mongoose.models.Product || mongoose.model("Product", productSchema);

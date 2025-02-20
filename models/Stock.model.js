@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const StockSchema = new mongoose.Schema({
+const stockSchema = new mongoose.Schema({
   warehouse: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Warehouse",
@@ -9,7 +9,7 @@ const StockSchema = new mongoose.Schema({
   product: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
-    reuired: true,
+    required: true,
   },
   quantity: {
     type: Number,
@@ -18,4 +18,5 @@ const StockSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Stock", StockSchema);
+module.exports =
+  mongoose.models.Stock || mongoose.model("Stock", stockSchema);
