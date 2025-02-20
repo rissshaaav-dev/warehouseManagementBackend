@@ -5,6 +5,7 @@ const {
   updateStock,
   deleteStock,
 } = require("../controllers/stock.controller");
+
 const protect = require("../middlewares/auth.middleware");
 const admin = require("../middlewares/admin.middleware");
 
