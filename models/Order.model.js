@@ -2,7 +2,16 @@ const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema(
   {
-    user: {
+    customerName: {
+      type: String,
+      required: true,
+    },
+    customerEmail: {
+      type: String,
+      required: true,
+      match: [/^\S+@\S+\.\S+$/, "Please enter a valid email"],
+    },
+    employee: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
